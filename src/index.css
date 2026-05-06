@@ -1,0 +1,38 @@
+@import "tailwindcss";
+@import "katex/dist/katex.min.css";
+
+@theme {
+  --color-background: #0f172a;
+  --color-foreground: #f8fafc;
+  --color-card: #1e293b;
+  --color-card-foreground: #f8fafc;
+  --color-primary: #8b5cf6;
+  --color-primary-foreground: #ffffff;
+  --color-secondary: #334155;
+  --color-secondary-foreground: #f8fafc;
+  --color-accent: #38bdf8;
+  --color-accent-foreground: #0f172a;
+  --color-destructive: #ef4444;
+  --color-destructive-foreground: #f8fafc;
+  --color-success: #22c55e;
+  --color-success-foreground: #ffffff;
+}
+
+@layer base {
+  body {
+    @apply bg-slate-900 text-slate-50 antialiased selection:bg-violet-500/30;
+  }
+}
+
+@layer utilities {
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .hide-scrollbar {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+  .glass-panel {
+    @apply bg-slate-800/60 backdrop-blur-md border border-slate-700/50 shadow-xl;
+  }
+}
