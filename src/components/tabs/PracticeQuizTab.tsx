@@ -101,15 +101,15 @@ export function PracticeQuizTab() {
     <div className="space-y-8 pb-10">
       <div className="flex flex-col md:flex-row items-center gap-6">
         <div className="flex-1">
-          <h2 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-emerald-400 mb-4">
+          <h2 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-emerald-600 mb-4">
             Laboratorio de Práctica
           </h2>
-          <p className="text-slate-300 text-lg leading-relaxed">
+          <p className="text-slate-600 text-lg leading-relaxed">
             Pon a prueba lo que has aprendido. Usa la calculadora para resolver triángulos o enfréntate al cuestionario final.
           </p>
         </div>
-        <div className="w-16 h-16 bg-blue-500/10 rounded-2xl border border-blue-500/30 flex items-center justify-center shadow-[0_0_15px_rgba(59,130,246,0.2)]">
-          <Target className="w-8 h-8 text-blue-400" />
+        <div className="w-16 h-16 bg-blue-50 rounded-2xl border border-blue-200 flex items-center justify-center shadow-[0_0_15px_rgba(59,130,246,0.1)]">
+          <Target className="w-8 h-8 text-blue-500" />
         </div>
       </div>
 
@@ -119,42 +119,42 @@ export function PracticeQuizTab() {
         <div className="glass-panel p-6 rounded-3xl relative overflow-hidden flex flex-col h-full">
           <div className="absolute top-0 right-0 w-32 h-32 bg-sky-500/10 rounded-full blur-[50px]" />
           
-          <h3 className="text-xl font-bold text-white mb-6 flex items-center gap-2">
+          <h3 className="text-xl font-bold text-slate-800 mb-6 flex items-center gap-2">
             Calculadora Mágica
-            <span className="text-xs font-normal text-slate-400 bg-slate-800 px-2 py-1 rounded-full">Deja un campo vacío</span>
+            <span className="text-xs font-normal text-slate-500 bg-slate-100 px-2 py-1 rounded-full border border-slate-200">Deja un campo vacío</span>
           </h3>
 
           <div className="space-y-6 flex-1">
             <div className="grid grid-cols-[80px_1fr] items-center gap-4">
-              <label className="text-sm font-bold text-red-400">Cateto A</label>
+              <label className="text-sm font-bold text-red-600">Cateto A</label>
               <input 
                 type="number" 
                 value={sideA} 
                 onChange={(e) => setSideA(e.target.value)}
                 placeholder="Ej. 3"
-                className="bg-slate-900 border border-slate-700 rounded-lg px-4 py-2 text-white outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 transition-all"
+                className="bg-white border border-slate-300 rounded-lg px-4 py-2 text-slate-800 outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 transition-all shadow-sm"
               />
             </div>
             
             <div className="grid grid-cols-[80px_1fr] items-center gap-4">
-              <label className="text-sm font-bold text-blue-400">Cateto B</label>
+              <label className="text-sm font-bold text-blue-600">Cateto B</label>
               <input 
                 type="number" 
                 value={sideB} 
                 onChange={(e) => setSideB(e.target.value)}
                 placeholder="Ej. 4"
-                className="bg-slate-900 border border-slate-700 rounded-lg px-4 py-2 text-white outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 transition-all"
+                className="bg-white border border-slate-300 rounded-lg px-4 py-2 text-slate-800 outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 transition-all shadow-sm"
               />
             </div>
 
             <div className="grid grid-cols-[80px_1fr] items-center gap-4">
-              <label className="text-sm font-bold text-purple-400">Hipotenusa</label>
+              <label className="text-sm font-bold text-purple-600">Hipotenusa</label>
               <input 
                 type="number" 
                 value={hypotenuse} 
                 onChange={(e) => setHypotenuse(e.target.value)}
                 placeholder="Ej. dejar vacío"
-                className="bg-slate-900 border border-slate-700 rounded-lg px-4 py-2 text-white outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition-all"
+                className="bg-white border border-slate-300 rounded-lg px-4 py-2 text-slate-800 outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition-all shadow-sm"
               />
             </div>
           </div>
@@ -168,7 +168,7 @@ export function PracticeQuizTab() {
             </button>
             <button 
               onClick={() => { setSideA(''); setSideB(''); setHypotenuse(''); }}
-              className="p-3 bg-slate-800 hover:bg-slate-700 border border-slate-600 rounded-xl transition-all text-slate-300 active:scale-95"
+              className="p-3 bg-slate-100 hover:bg-slate-200 border border-slate-200 rounded-xl transition-all text-slate-600 active:scale-95 shadow-sm"
               title="Limpiar"
             >
               <RefreshCw className="w-5 h-5" />
@@ -181,17 +181,17 @@ export function PracticeQuizTab() {
           {!quizFinished ? (
             <>
               <div className="flex justify-between items-center mb-6">
-                <h3 className="text-xl font-bold text-white flex items-center gap-2">
-                  <GraduationCap className="w-5 h-5 text-emerald-400" />
+                <h3 className="text-xl font-bold text-slate-800 flex items-center gap-2">
+                  <GraduationCap className="w-5 h-5 text-emerald-600" />
                   Cuestionario
                 </h3>
-                <span className="text-xs font-bold text-emerald-400 bg-emerald-500/10 px-3 py-1 rounded-full border border-emerald-500/20">
+                <span className="text-xs font-bold text-emerald-700 bg-emerald-100 px-3 py-1 rounded-full border border-emerald-200">
                   {currentQIndex + 1} de {quizQuestions.length}
                 </span>
               </div>
 
               <div className="flex-1 flex flex-col">
-                <p className="text-lg font-medium text-slate-200 mb-6 min-h-[60px]">
+                <p className="text-lg font-medium text-slate-700 mb-6 min-h-[60px]">
                   {quizQuestions[currentQIndex].text}
                 </p>
 
@@ -201,11 +201,11 @@ export function PracticeQuizTab() {
                     const isCorrect = idx === quizQuestions[currentQIndex].correctIndex;
                     const showStatus = selectedAnswer !== null;
 
-                    let btnClass = "bg-slate-800 border-slate-700 hover:bg-slate-700 text-slate-300";
+                    let btnClass = "bg-white border-slate-200 hover:bg-slate-50 text-slate-700";
                     if (showStatus) {
-                      if (isCorrect) btnClass = "bg-emerald-500/20 border-emerald-500 text-emerald-400";
-                      else if (isSelected) btnClass = "bg-red-500/20 border-red-500 text-red-400";
-                      else btnClass = "bg-slate-800/50 border-slate-800 text-slate-500 opacity-50";
+                      if (isCorrect) btnClass = "bg-emerald-50 border-emerald-500 text-emerald-700";
+                      else if (isSelected) btnClass = "bg-red-50 border-red-500 text-red-700";
+                      else btnClass = "bg-slate-50 border-slate-200 text-slate-400 opacity-70";
                     }
 
                     return (
@@ -230,14 +230,14 @@ export function PracticeQuizTab() {
                       animate={{ opacity: 1, height: 'auto' }}
                       className="mt-auto"
                     >
-                      <div className={`p-4 rounded-xl text-sm mb-4 ${selectedAnswer === quizQuestions[currentQIndex].correctIndex ? 'bg-emerald-500/10 border border-emerald-500/20 text-emerald-200' : 'bg-red-500/10 border border-red-500/20 text-red-200'}`}>
+                      <div className={`p-4 rounded-xl text-sm mb-4 ${selectedAnswer === quizQuestions[currentQIndex].correctIndex ? 'bg-emerald-50 border border-emerald-200 text-emerald-800' : 'bg-red-50 border border-red-200 text-red-800'}`}>
                         <strong className="block mb-1">Explicación:</strong>
                         {quizQuestions[currentQIndex].explanation}
                       </div>
                       
                       <button 
                         onClick={nextQuestion}
-                        className="w-full flex items-center justify-center gap-2 bg-slate-800 hover:bg-slate-700 text-white font-bold py-3 rounded-xl transition-all"
+                        className="w-full flex items-center justify-center gap-2 bg-slate-800 hover:bg-slate-700 text-white font-bold py-3 rounded-xl transition-all shadow-md"
                       >
                         {currentQIndex < quizQuestions.length - 1 ? 'Siguiente Pregunta' : 'Ver Resultados'}
                         <ArrowRight className="w-4 h-4" />
@@ -249,11 +249,11 @@ export function PracticeQuizTab() {
             </>
           ) : (
             <div className="flex-1 flex flex-col items-center justify-center text-center">
-              <div className="w-24 h-24 bg-emerald-500/20 rounded-full flex items-center justify-center mb-6 border-4 border-emerald-500/30">
-                <GraduationCap className="w-12 h-12 text-emerald-400" />
+              <div className="w-24 h-24 bg-emerald-100 rounded-full flex items-center justify-center mb-6 border-4 border-emerald-200">
+                <GraduationCap className="w-12 h-12 text-emerald-600" />
               </div>
-              <h3 className="text-3xl font-black text-white mb-2">¡Completado!</h3>
-              <p className="text-slate-400 mb-6">Obtuviste <strong className="text-emerald-400 text-xl">{score}</strong> de {quizQuestions.length} correctas.</p>
+              <h3 className="text-3xl font-black text-slate-800 mb-2">¡Completado!</h3>
+              <p className="text-slate-600 mb-6">Obtuviste <strong className="text-emerald-600 text-xl">{score}</strong> de {quizQuestions.length} correctas.</p>
               
               <button 
                 onClick={resetQuiz}

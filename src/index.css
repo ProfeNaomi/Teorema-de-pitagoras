@@ -2,25 +2,25 @@
 @import "katex/dist/katex.min.css";
 
 @theme {
-  --color-background: #0f172a;
-  --color-foreground: #f8fafc;
-  --color-card: #1e293b;
-  --color-card-foreground: #f8fafc;
-  --color-primary: #8b5cf6;
+  --color-background: #ffffff;
+  --color-foreground: #0f172a;
+  --color-card: #ffffff;
+  --color-card-foreground: #0f172a;
+  --color-primary: #6366f1;
   --color-primary-foreground: #ffffff;
-  --color-secondary: #334155;
-  --color-secondary-foreground: #f8fafc;
-  --color-accent: #38bdf8;
-  --color-accent-foreground: #0f172a;
+  --color-secondary: #f1f5f9;
+  --color-secondary-foreground: #0f172a;
+  --color-accent: #8b5cf6;
+  --color-accent-foreground: #ffffff;
   --color-destructive: #ef4444;
-  --color-destructive-foreground: #f8fafc;
+  --color-destructive-foreground: #ffffff;
   --color-success: #22c55e;
   --color-success-foreground: #ffffff;
 }
 
 @layer base {
   body {
-    @apply bg-slate-900 text-slate-50 antialiased selection:bg-violet-500/30;
+    @apply bg-slate-50 text-slate-900 antialiased selection:bg-indigo-500/20 text-[1.05rem] leading-relaxed;
   }
 }
 
@@ -33,6 +33,6 @@
     scrollbar-width: none; /* Firefox */
   }
   .glass-panel {
-    @apply bg-slate-800/60 backdrop-blur-md border border-slate-700/50 shadow-xl;
+    @apply bg-white border border-slate-200 shadow-sm rounded-2xl;
   }
 }
