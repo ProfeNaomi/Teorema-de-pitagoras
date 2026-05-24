@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'motion/react';
 import { TriangleRight, Info, CheckCircle, XCircle } from 'lucide-react';
 import 'katex/dist/katex.min.css';
-import { InlineMath } from 'react-katex';
+import { InlineMath, BlockMath } from 'react-katex';
 
 export function FundamentalsTab() {
   const [hoveredPart, setHoveredPart] = useState<'a' | 'b' | 'c' | 'angle' | null>(null);

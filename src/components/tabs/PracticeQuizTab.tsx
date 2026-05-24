@@ -144,19 +144,35 @@ export function PracticeQuizTab() {
   const [score, setScore] = useState(0);
   const [quizFinished, setQuizFinished] = useState(false);
 
+  // Helper to extract the number if it's formatted as a root
+  const parseValue = (val: string) => {
+    if (!val) return NaN;
+    if (val.includes('≈')) {
+      const parts = val.split('≈');
+      return parseFloat(parts[1].trim());
+    }
+    return parseFloat(val);
+  };
+
+  const formatResult = (squared: number) => {
+    const root = Math.sqrt(squared);
+    if (Number.isInteger(root)) return root.toString();
+    return `√${squared} ≈ ${root.toFixed(2)}`;
+  };
+
   const calculateMissing = () => {
-    const a = parseFloat(sideA);
-    const b = parseFloat(sideB);
-    const c = parseFloat(hypotenuse);
+    const a = parseValue(sideA);
+    const b = parseValue(sideB);
+    const c = parseValue(hypotenuse);
 
     if (sideA && sideB && !hypotenuse) {
-      setHypotenuse(Math.sqrt(a * a + b * b).toFixed(2).replace('.00', ''));
+      setHypotenuse(formatResult(a * a + b * b));
     } else if (sideA && hypotenuse && !sideB) {
       if (c <= a) return alert("La hipotenusa debe ser el lado mayor.");
-      setSideB(Math.sqrt(c * c - a * a).toFixed(2).replace('.00', ''));
+      setSideB(formatResult(c * c - a * a));
     } else if (sideB && hypotenuse && !sideA) {
       if (c <= b) return alert("La hipotenusa debe ser el lado mayor.");
-      setSideA(Math.sqrt(c * c - b * b).toFixed(2).replace('.00', ''));
+      setSideA(formatResult(c * c - b * b));
     } else {
       alert("Por favor, ingresa exactamente 2 valores para calcular el tercero.");
     }
@@ -224,33 +240,33 @@ export function PracticeQuizTab() {
             <div className="grid grid-cols-[80px_1fr] items-center gap-4">
               <label className="text-sm font-bold text-red-600">Cateto A</label>
               <input 
-                type="number" 
+                type="text" 
                 value={sideA} 
                 onChange={(e) => setSideA(e.target.value)}
                 placeholder="Ej. 3"
-                className="bg-white border border-slate-300 rounded-lg px-4 py-2 text-slate-800 outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 transition-all shadow-sm"
+                className="bg-white border border-slate-300 rounded-lg px-4 py-2 text-slate-800 outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 transition-all shadow-sm font-mono text-lg"
               />
             </div>
             
             <div className="grid grid-cols-[80px_1fr] items-center gap-4">
               <label className="text-sm font-bold text-blue-600">Cateto B</label>
               <input 
-                type="number" 
+                type="text" 
                 value={sideB} 
                 onChange={(e) => setSideB(e.target.value)}
                 placeholder="Ej. 4"
-                className="bg-white border border-slate-300 rounded-lg px-4 py-2 text-slate-800 outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 transition-all shadow-sm"
+                className="bg-white border border-slate-300 rounded-lg px-4 py-2 text-slate-800 outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 transition-all shadow-sm font-mono text-lg"
               />
             </div>
 
             <div className="grid grid-cols-[80px_1fr] items-center gap-4">
               <label className="text-sm font-bold text-purple-600">Hipotenusa</label>
               <input 
-                type="number" 
+                type="text" 
                 value={hypotenuse} 
                 onChange={(e) => setHypotenuse(e.target.value)}
                 placeholder="Ej. dejar vacío"
-                className="bg-white border border-slate-300 rounded-lg px-4 py-2 text-slate-800 outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition-all shadow-sm"
+                className="bg-white border border-slate-300 rounded-lg px-4 py-2 text-slate-800 outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition-all shadow-sm font-mono text-lg"
               />
             </div>
           </div>
@@ -362,6 +378,74 @@ export function PracticeQuizTab() {
           )}
         </div>
       </div>
+      
+      {/* Graficador Visual Section */}
+      <div className="mt-8 glass-panel p-8 rounded-3xl border-t border-slate-200">
+        <h3 className="text-2xl font-bold text-slate-800 mb-2 flex items-center gap-2">
+          Graficador Automático
+        </h3>
+        <p className="text-slate-600 mb-6">
+          Ingresa al menos los catetos en la calculadora para que el triángulo se dibuje a escala automáticamente.
+        </p>
+        
+        <div className="relative w-full aspect-video max-h-[400px] bg-slate-50 border border-slate-200 rounded-2xl overflow-hidden flex items-center justify-center shadow-inner">
+          {/* Grid Background Pattern */}
+          <div className="absolute inset-0 opacity-20 pointer-events-none" style={{ backgroundImage: 'linear-gradient(to right, #94a3b8 1px, transparent 1px), linear-gradient(to bottom, #94a3b8 1px, transparent 1px)', backgroundSize: '20px 20px' }}></div>
+          
+          {(() => {
+            const valA = parseValue(sideA);
+            const valB = parseValue(sideB);
+            
+            if (!isNaN(valA) && !isNaN(valB) && valA > 0 && valB > 0) {
+              // Calculate scaling factor to fit within 300x200 box (with padding)
+              const padding = 40;
+              const maxW = 350;
+              const maxH = 250;
+              const scale = Math.min((maxW - padding*2) / valB, (maxH - padding*2) / valA);
+              
+              const pixelA = valA * scale;
+              const pixelB = valB * scale;
+              const hypotPixel = Math.sqrt(pixelA*pixelA + pixelB*pixelB);
+              
+              return (
+                <svg width="400" height="300" className="overflow-visible z-10" viewBox="0 0 400 300">
+                  <g transform={`translate(${(400 - pixelB) / 2}, ${(300 + pixelA) / 2})`}>
+                    
+                    {/* Hypotenuse */}
+                    <line x1="0" y1={-pixelA} x2={pixelB} y2="0" stroke="#8b5cf6" strokeWidth="4" strokeLinecap="round" />
+                    <text x={pixelB / 2 + 10} y={-pixelA / 2 - 10} className="fill-purple-700 font-bold font-mono">
+                      c = {parseValue(hypotenuse) ? hypotenuse : '?'}
+                    </text>
+                    
+                    {/* Cateto A */}
+                    <line x1="0" y1="0" x2="0" y2={-pixelA} stroke="#ef4444" strokeWidth="4" strokeLinecap="round" />
+                    <text x="-30" y={-pixelA / 2} textAnchor="end" className="fill-red-700 font-bold font-mono" dominantBaseline="middle">
+                      a = {valA}
+                    </text>
+                    
+                    {/* Cateto B */}
+                    <line x1="0" y1="0" x2={pixelB} y2="0" stroke="#3b82f6" strokeWidth="4" strokeLinecap="round" />
+                    <text x={pixelB / 2} y="25" textAnchor="middle" className="fill-blue-700 font-bold font-mono">
+                      b = {valB}
+                    </text>
+
+                    {/* Right Angle Indicator */}
+                    <rect x="0" y="-15" width="15" height="15" fill="rgba(245, 158, 11, 0.2)" stroke="#f59e0b" strokeWidth="2" />
+                    
+                  </g>
+                </svg>
+              );
+            } else {
+              return (
+                <div className="z-10 text-slate-400 font-medium text-center bg-white/80 p-6 rounded-2xl border border-slate-200">
+                  Introduce los valores de Cateto A y Cateto B para ver el gráfico.
+                </div>
+              );
+            }
+          })()}
+        </div>
+      </div>
+      
     </div>
   );
 }

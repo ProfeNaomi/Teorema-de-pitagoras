@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { InlineMath, BlockMath } from 'react-katex';
 import { RotateCw, Play, Pause, HelpCircle, Info } from 'lucide-react';
 
-type ProofId = 'classic' | 'water' | 'perigal' | 'bhaskara';
+type ProofId = 'classic' | 'water' | 'perigal';
 
 export function ProofsGalleryTab() {
   const [activeProof, setActiveProof] = useState<ProofId>('classic');
@@ -49,10 +49,10 @@ export function ProofsGalleryTab() {
       </div>
 
       {/* Internal Proof Switcher */}
-      <div className="flex flex-wrap gap-2 p-1.5 bg-slate-100 border border-slate-200 rounded-2xl w-fit">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-2 p-1.5 bg-slate-100 border border-slate-200 rounded-2xl w-full">
         <button
           onClick={() => { setActiveProof('classic'); setProgress(0); }}
-          className={`px-4 py-2.5 rounded-xl text-sm font-bold transition-all ${
+          className={`px-4 py-3 rounded-xl text-sm font-bold transition-all ${
             activeProof === 'classic'
               ? 'bg-white text-indigo-700 shadow-sm'
               : 'text-slate-600 hover:text-slate-900'
@@ -62,7 +62,7 @@ export function ProofsGalleryTab() {
         </button>
         <button
           onClick={() => { setActiveProof('water'); setProgress(0); }}
-          className={`px-4 py-2.5 rounded-xl text-sm font-bold transition-all ${
+          className={`px-4 py-3 rounded-xl text-sm font-bold transition-all ${
             activeProof === 'water'
               ? 'bg-white text-indigo-700 shadow-sm'
               : 'text-slate-600 hover:text-slate-900'
@@ -72,23 +72,13 @@ export function ProofsGalleryTab() {
         </button>
         <button
           onClick={() => { setActiveProof('perigal'); setProgress(0); }}
-          className={`px-4 py-2.5 rounded-xl text-sm font-bold transition-all ${
+          className={`px-4 py-3 rounded-xl text-sm font-bold transition-all ${
             activeProof === 'perigal'
               ? 'bg-white text-indigo-700 shadow-sm'
               : 'text-slate-600 hover:text-slate-900'
           }`}
         >
           3. Disección de Perigal 🧩
-        </button>
-        <button
-          onClick={() => { setActiveProof('bhaskara'); setProgress(0); }}
-          className={`px-4 py-2.5 rounded-xl text-sm font-bold transition-all ${
-            activeProof === 'bhaskara'
-              ? 'bg-white text-indigo-700 shadow-sm'
-              : 'text-slate-600 hover:text-slate-900'
-          }`}
-        >
-          4. El Puzzle de Bhaskara
         </button>
       </div>
 
@@ -135,18 +125,6 @@ export function ProofsGalleryTab() {
                 <h3 className="text-2xl font-black text-slate-800">El Rompecabezas de Henry Perigal</h3>
                 <p className="text-slate-600 text-base leading-relaxed">
                   Henry Perigal descubrió en 1830 que si cortamos el cuadrado del cateto mayor (<InlineMath math="b^2" />) con dos líneas cruzadas por su centro (una paralela a la hipotenusa y otra perpendicular), obtenemos 4 piezas que, junto al cuadrado menor (<InlineMath math="a^2" />), encajan mágicamente para rellenar la hipotenusa (<InlineMath math="c^2" />).
-                </p>
-              </>
-            )}
-
-            {activeProof === 'bhaskara' && (
-              <>
-                <div className="inline-flex items-center gap-1.5 px-3 py-1 bg-amber-50 text-amber-700 border border-amber-100 rounded-full text-xs font-bold uppercase tracking-wider">
-                  Rearreglo Algebraico
-                </div>
-                <h3 className="text-2xl font-black text-slate-800">El Puzzle Chino (Zhoubi Suanjing)</h3>
-                <p className="text-slate-600 text-base leading-relaxed">
-                  Presentado por Bháskara II, este puzzle organiza 4 triángulos rectángulos de hipotenusa <InlineMath math="c" /> en un cuadrado exterior. En el centro queda un pequeño hueco cuadrado de lado <InlineMath math="b-a" />. Al deslizar el control, los triángulos se separan formando dos rectángulos que equivalen a la suma de los catetos al cuadrado.
                 </p>
               </>
             )}
@@ -225,16 +203,6 @@ export function ProofsGalleryTab() {
                 <li>Tienen una simetría tal que el cuadrado del cateto menor <InlineMath math="a^2" /> encaja exactamente en el espacio central que dejan las 4 piezas cuando se colocan en las esquinas de <InlineMath math="c^2" />.</li>
                 <li>Esta disección demuestra que podemos cortar un área y reorganizarla sin añadir ni quitar espacio.</li>
                 <li>Es un puzzle perfecto que prueba físicamente la igualdad de áreas: <InlineMath math="a^2 + b^2 = c^2" />.</li>
-              </ul>
-            )}
-
-            {activeProof === 'bhaskara' && (
-              <ul className="list-disc pl-5 space-y-1.5 text-[0.95rem]">
-                <li>El cuadrado grande formado por los 4 triángulos alineados tiene área <InlineMath math="c^2" />.</li>
-                <li>El área total se puede calcular sumando las partes: <InlineMath math="\text{Área} = 4 \times (\frac{ab}{2}) + (b-a)^2" />.</li>
-                <li>Expandiendo la fórmula: <InlineMath math="c^2 = 2ab + (b^2 - 2ab + a^2)" />.</li>
-                <li>Los términos se cancelan mágicamente dejando: <InlineMath math="c^2 = a^2 + b^2" />.</li>
-                <li>Al deslizar el control, los triángulos se separan y revelan visualmente esta misma suma de áreas de forma física.</li>
               </ul>
             )}
           </div>
