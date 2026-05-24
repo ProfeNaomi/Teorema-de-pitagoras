@@ -39,12 +39,6 @@ export default function App() {
                   Teorema de Pitágoras
                 </h1>
               </div>
-              
-              {/* Badge Profesora Naomi */}
-              <div className="flex items-center gap-1.5 px-3 py-1 bg-indigo-50 border border-indigo-100 text-indigo-700 rounded-full font-bold text-xs shadow-sm shrink-0">
-                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                <span>Profesora Naomi 👩‍🏫</span>
-              </div>
             </div>
             
             {/* Tabs */}
@@ -63,7 +57,7 @@ export default function App() {
                       }`}
                   >
                     <Icon size={16} className={isActive ? "text-indigo-600" : "text-slate-400"} />
-                    {tab.label}
+                    {tab.label === 'Práctica y Quiz' ? 'Ejercicios y Quiz' : tab.label}
                   </button>
                 );
               })}
@@ -96,18 +90,28 @@ export default function App() {
       {/* Footer Institucional */}
       <footer className="w-full bg-white border-t border-slate-200 py-6 mt-12 shadow-[0_-1px_3px_rgba(0,0,0,0.02)]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-4">
-          <div className="flex items-center gap-2">
-            <div className="bg-indigo-50 text-indigo-700 p-1.5 rounded-lg border border-indigo-100">
-              <Triangle size={14} className="fill-indigo-200" />
+          <div className="flex flex-col md:flex-row items-center gap-4">
+            <div className="flex items-center gap-2">
+              <div className="bg-indigo-50 text-indigo-700 p-1.5 rounded-lg border border-indigo-100">
+                <Triangle size={14} className="fill-indigo-200" />
+              </div>
+              <span className="text-sm font-semibold text-slate-700">Teorema de Pitágoras</span>
             </div>
-            <span className="text-sm font-semibold text-slate-700">Teorema de Pitágoras</span>
           </div>
-          <div className="text-slate-500 text-sm font-medium flex items-center gap-1.5 flex-wrap justify-center">
-            <span>Creado con ❤️ para sus alumnos por la</span>
-            <span className="font-extrabold text-indigo-600 bg-indigo-50 px-3 py-1 rounded-full border border-indigo-100">
-              Profesora Naomi Urrea
-            </span>
+          
+          <div className="flex flex-col items-center gap-2">
+            <div className="text-slate-500 text-sm font-medium flex items-center gap-1.5 flex-wrap justify-center">
+              <span>Creado con ❤️ para sus alumnos por la</span>
+              <span className="font-extrabold text-indigo-600 bg-indigo-50 px-3 py-1 rounded-full border border-indigo-100 flex items-center gap-1">
+                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                Profesora Naomi Urrea
+              </span>
+            </div>
+            <p className="text-slate-500 text-xs italic max-w-md text-center">
+              "Creado con amor para sus alumnos para que puedan desarrollar su intelecto y ser mejores personas."
+            </p>
           </div>
+
           <div className="text-xs text-slate-400">
             © {new Date().getFullYear()} · Todos los derechos reservados
           </div>

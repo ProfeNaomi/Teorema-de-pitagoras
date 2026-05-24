@@ -316,48 +316,13 @@ export function ProofsGalleryTab() {
 
                 <svg viewBox="0 0 340 340" className="w-full h-full absolute inset-0 z-10 overflow-visible">
                   
-                  {/* Central Right Triangle */}
-                  {/* Right vertex at (160, 190). Side a=60 up to (160, 130). Side b=80 right to (240, 190). */}
-                  <polygon points="160,130 160,190 240,190" className="fill-slate-700 stroke-slate-500 stroke-2" />
+                  {/* Central Triangle (right angle at bottom) */}
+                  <polygon points="120,170 220,170 184,122" className="fill-slate-700 stroke-slate-500 stroke-2" />
                   
-                  {/* Container A: side a=60. Origin top-left at (100, 130) */}
-                  <g transform="translate(100, 130)">
-                    {/* Water */}
-                    <rect 
-                      x="2" 
-                      y={2 + 56 * waterLevel} 
-                      width="56" 
-                      height={56 * (1 - waterLevel)} 
-                      rx="2"
-                      className="fill-blue-500/85 stroke-blue-600/30 stroke-1 transition-all duration-1000 ease-in-out"
-                    />
-                    {/* Glass tank outline */}
-                    <rect x="0" y="0" width="60" height="60" fill="none" className="stroke-slate-400 stroke-2" />
-                    {/* Label inside tank */}
-                    <text x="30" y="35" textAnchor="middle" className="font-bold text-sm fill-slate-300 tracking-wider">a²</text>
-                  </g>
-
-                  {/* Container B: side b=80. Origin top-left at (160, 190) */}
-                  <g transform="translate(160, 190)">
-                    {/* Water */}
-                    <rect 
-                      x="2" 
-                      y={2 + 76 * waterLevel} 
-                      width="76" 
-                      height={76 * (1 - waterLevel)} 
-                      rx="2"
-                      className="fill-blue-500/85 stroke-blue-600/30 stroke-1 transition-all duration-1000 ease-in-out"
-                    />
-                    {/* Glass tank outline */}
-                    <rect x="0" y="0" width="80" height="80" fill="none" className="stroke-slate-400 stroke-2" />
-                    {/* Label inside tank */}
-                    <text x="40" y="45" textAnchor="middle" className="font-bold text-base fill-slate-300 tracking-wider">b²</text>
-                  </g>
-
-                  {/* Container C: side c=100. Origin at (160, 130). Rotated by -53.13 deg */}
-                  {/* In local coordinates, the tank is upright. */}
-                  <g transform="translate(160, 130) rotate(-53.13)">
-                    {/* Water */}
+                  {/* Container C (c^2) directly below hypotenuse */}
+                  <g transform="translate(120, 170)">
+                    <rect x="0" y="0" width="100" height="100" fill="none" className="stroke-slate-400 stroke-2" />
+                    {/* Water fills from the bottom of the container */}
                     <rect 
                       x="2" 
                       y={2 + 96 * (1 - waterLevel)} 
@@ -366,12 +331,35 @@ export function ProofsGalleryTab() {
                       rx="2"
                       className="fill-blue-500/85 stroke-blue-600/30 stroke-1 transition-all duration-1000 ease-in-out"
                     />
-                    {/* Glass tank outline */}
-                    <rect x="0" y="0" width="100" height="100" fill="none" className="stroke-slate-400 stroke-2" />
-                    {/* Label inside tank */}
-                    <g transform="translate(50, 50)">
-                      <text x="0" y="5" textAnchor="middle" className="font-bold text-lg fill-slate-300 tracking-wider" transform="rotate(53.13)">c²</text>
-                    </g>
+                    <text x="50" y="55" textAnchor="middle" className="font-bold text-xl fill-slate-300 tracking-wider">c²</text>
+                  </g>
+
+                  {/* Container A (a^2) on the right leg */}
+                  <g transform="translate(184, 122) rotate(53.13)">
+                    <rect x="0" y="-60" width="60" height="60" fill="none" className="stroke-slate-400 stroke-2" />
+                    <rect 
+                      x="2" 
+                      y={-58 + 56 * waterLevel} 
+                      width="56" 
+                      height={56 * (1 - waterLevel)} 
+                      rx="2"
+                      className="fill-blue-500/85 stroke-blue-600/30 stroke-1 transition-all duration-1000 ease-in-out"
+                    />
+                    <text x="30" y="-25" textAnchor="middle" className="font-bold text-sm fill-slate-300 tracking-wider" transform="rotate(-53.13, 30, -25)">a²</text>
+                  </g>
+
+                  {/* Container B (b^2) on the left leg */}
+                  <g transform="translate(120, 170) rotate(-36.87)">
+                    <rect x="0" y="-80" width="80" height="80" fill="none" className="stroke-slate-400 stroke-2" />
+                    <rect 
+                      x="2" 
+                      y={-78 + 76 * waterLevel} 
+                      width="76" 
+                      height={76 * (1 - waterLevel)} 
+                      rx="2"
+                      className="fill-blue-500/85 stroke-blue-600/30 stroke-1 transition-all duration-1000 ease-in-out"
+                    />
+                    <text x="40" y="-35" textAnchor="middle" className="font-bold text-base fill-slate-300 tracking-wider" transform="rotate(36.87, 40, -35)">b²</text>
                   </g>
 
                 </svg>
@@ -388,88 +376,78 @@ export function ProofsGalleryTab() {
               
               {/* Outer grid definitions for target and source */}
               
-              {/* Smaller square (a^2): size 60x60. Original pos: (100, 130) -> (160, 190) */}
-              {/* Destination center in Square C: (230, 120). Original center: (130, 160) */}
-              {/* Rotates by -36.87 deg. Translation delta: (100, -40) */}
+              {/* Smaller square A (a^2): side 60 */}
               <g 
                 style={{
-                  transform: `translate(${100 * t}px, ${-40 * t}px) rotate(${-36.87 * t}deg)`,
-                  transformOrigin: '130px 160px',
+                  transform: `translate(${100 * t}px, ${-40 * t}px)`,
                   transition: 'transform 0.1s linear'
                 }}
               >
-                <rect x="100" y="130" width="60" height="60" className="fill-red-400 stroke-red-500 stroke-2 shadow-sm" />
-                <text x="130" y="165" textAnchor="middle" className="font-extrabold text-sm fill-red-800 opacity-60">a²</text>
+                <rect x="90" y="140" width="60" height="60" className="fill-red-400 stroke-red-500 stroke-2 shadow-sm" />
+                <text x="120" y="175" textAnchor="middle" className="font-extrabold text-sm fill-red-800 opacity-60">a²</text>
               </g>
 
-              {/* Four pieces of Square B (80x80, center C=(200, 230)) */}
-              {/* Cut lines intersect borders at P1(240, 260), P2(170, 270), P3(160, 200), P4(230, 190) */}
+              {/* Square B Dissection (b^2): side 80 */}
               
-              {/* Piece 1: Top-Right. Center starts at (220, 210). Dest center at (248, 114). delta: (28, -96) */}
+              {/* Piece 1: Top-Right */}
               <g
                 style={{
-                  transform: `translate(${28 * t}px, ${-96 * t}px) rotate(${-36.87 * t}deg)`,
-                  transformOrigin: '220px 210px',
+                  transform: `translate(${-40 * t}px, ${-100 * t}px)`,
                   transition: 'transform 0.1s linear'
                 }}
               >
-                <polygon points="200,230 230,190 240,190 240,260" className="fill-emerald-400 stroke-emerald-500 stroke-2" />
-                <text x="223" y="215" textAnchor="middle" className="font-extrabold text-xs fill-emerald-800 opacity-60">1</text>
+                <polygon points="190,240 220,200 230,200 230,270" className="fill-emerald-400 stroke-emerald-500 stroke-2" />
+                <text x="220" y="235" textAnchor="middle" className="font-extrabold text-xs fill-emerald-800 opacity-60">1</text>
               </g>
 
-              {/* Piece 2: Bottom-Right. Center starts at (220, 250). Dest center at (256, 158). delta: (36, -92) */}
+              {/* Piece 2: Bottom-Right */}
               <g
                 style={{
-                  transform: `translate(${36 * t}px, ${-92 * t}px) rotate(${-36.87 * t}deg)`,
-                  transformOrigin: '220px 250px',
+                  transform: `translate(${20 * t}px, ${-180 * t}px)`,
                   transition: 'transform 0.1s linear'
                 }}
               >
-                <polygon points="200,230 240,260 240,270 170,270" className="fill-emerald-400/90 stroke-emerald-500 stroke-2" />
-                <text x="218" y="255" textAnchor="middle" className="font-extrabold text-xs fill-emerald-800 opacity-60">2</text>
+                <polygon points="190,240 230,270 230,280 160,280" className="fill-emerald-400/90 stroke-emerald-500 stroke-2" />
+                <text x="200" y="265" textAnchor="middle" className="font-extrabold text-xs fill-emerald-800 opacity-60">2</text>
               </g>
 
-              {/* Piece 3: Bottom-Left. Center starts at (180, 250). Dest center at (212, 166). delta: (32, -84) */}
+              {/* Piece 3: Bottom-Left */}
               <g
                 style={{
-                  transform: `translate(${32 * t}px, ${-84 * t}px) rotate(${-36.87 * t}deg)`,
-                  transformOrigin: '180px 250px',
+                  transform: `translate(${100 * t}px, ${-120 * t}px)`,
                   transition: 'transform 0.1s linear'
                 }}
               >
-                <polygon points="200,230 170,270 160,270 160,200" className="fill-emerald-400/80 stroke-emerald-500 stroke-2" />
-                <text x="178" y="250" textAnchor="middle" className="font-extrabold text-xs fill-emerald-800 opacity-60">3</text>
+                <polygon points="190,240 160,280 150,280 150,210" className="fill-emerald-400/80 stroke-emerald-500 stroke-2" />
+                <text x="165" y="255" textAnchor="middle" className="font-extrabold text-xs fill-emerald-800 opacity-60">3</text>
               </g>
 
-              {/* Piece 4: Top-Left. Center starts at (180, 210). Dest center at (204, 122). delta: (24, -88) */}
+              {/* Piece 4: Top-Left */}
               <g
                 style={{
-                  transform: `translate(${24 * t}px, ${-88 * t}px) rotate(${-36.87 * t}deg)`,
-                  transformOrigin: '180px 210px',
+                  transform: `translate(${40 * t}px, ${-40 * t}px)`,
                   transition: 'transform 0.1s linear'
                 }}
               >
-                <polygon points="200,230 160,200 160,190 230,190" className="fill-emerald-400/70 stroke-emerald-500 stroke-2" />
-                <text x="183" y="208" textAnchor="middle" className="font-extrabold text-xs fill-emerald-800 opacity-60">4</text>
+                <polygon points="190,240 150,210 150,200 220,200" className="fill-emerald-400/70 stroke-emerald-500 stroke-2" />
+                <text x="180" y="215" textAnchor="middle" className="font-extrabold text-xs fill-emerald-800 opacity-60">4</text>
               </g>
 
               {/* Central Right Triangle (Anchor) */}
-              <polygon points="160,130 160,190 240,190" className="fill-slate-100 stroke-slate-400 stroke-2 stroke-dashed" />
+              <polygon points="150,200 230,200 150,140" className="fill-slate-100 stroke-slate-400 stroke-2 stroke-dashed" />
 
               {/* Targets outlines (dashed lines for educational guidance) */}
-              {/* Square C (100x100 on hypotenuse) */}
-              <g transform="translate(160, 130) rotate(-36.87)" className="opacity-45 pointer-events-none">
-                <rect x="0" y="0" width="100" height="100" fill="none" className="stroke-indigo-400 stroke-2 stroke-dashed" />
-                <text x="50" y="55" textAnchor="middle" className="font-bold text-lg fill-indigo-400" transform="rotate(36.87, 50, 50)">c²</text>
-              </g>
+              {/* Square C outline on hypotenuse */}
+              <polygon points="150,140 230,200 290,120 210,60" fill="none" className="stroke-indigo-400 stroke-2 stroke-dashed opacity-45 pointer-events-none" />
+              <text x="220" y="135" textAnchor="middle" className="font-bold text-lg fill-indigo-400 opacity-45 pointer-events-none">c²</text>
 
               {/* Square B outline */}
-              <rect x="160" y="190" width="80" height="80" fill="none" className="stroke-slate-300 stroke-1 stroke-dashed pointer-events-none" />
-              <text x="200" y="278" textAnchor="middle" className="font-bold text-xs fill-emerald-500 opacity-65">b²</text>
+              <rect x="150" y="200" width="80" height="80" fill="none" className="stroke-slate-300 stroke-1 stroke-dashed pointer-events-none" />
+              <text x="190" y="275" textAnchor="middle" className="font-bold text-xs fill-emerald-500 opacity-65">b²</text>
 
               {/* Square A outline */}
-              <rect x="100" y="130" width="60" height="60" fill="none" className="stroke-slate-300 stroke-1 stroke-dashed pointer-events-none" />
-              <text x="130" y="122" textAnchor="middle" className="font-bold text-xs fill-red-500 opacity-65">a²</text>
+              <rect x="90" y="140" width="60" height="60" fill="none" className="stroke-slate-300 stroke-1 stroke-dashed pointer-events-none" />
+              <text x="120" y="150" textAnchor="middle" className="font-bold text-xs fill-red-500 opacity-65">a²</text>
 
             </svg>
           )}
@@ -478,53 +456,47 @@ export function ProofsGalleryTab() {
           {activeProof === 'bhaskara' && (
             <svg viewBox="0 0 340 340" className="w-[300px] h-[300px] md:w-[320px] md:h-[320px] overflow-visible bg-white rounded-2xl border border-slate-200/50 shadow-md relative">
               
-              {/* Outline of the c^2 outer square of side 100, centered at (170, 170) */}
-              {/* Coordinates from 120 to 220. */}
-              <g transform="translate(170, 170) rotate(-36.87) translate(-50, -50)" className="opacity-20 pointer-events-none">
-                <rect x="0" y="0" width="100" height="100" fill="none" className="stroke-indigo-600 stroke-3" />
+              {/* Outline of the c^2 outer square of side 100 */}
+              <polygon points="160,100 240,160 180,240 100,180" fill="none" className="stroke-indigo-600 stroke-3 opacity-20 pointer-events-none" />
+
+              {/* T1 */}
+              <g style={{ transition: 'transform 0.1s linear' }}>
+                <polygon points="160,100 160,160 240,160" className="fill-amber-400 stroke-amber-500 stroke-2" />
+                <text x="190" y="145" className="font-bold text-xs fill-amber-900 opacity-50">T1</text>
               </g>
 
-              {/* Triangles: Leg horizontal = 80, vertical = 60. */}
-              {/* Central hole is 20x20. */}
-
-              {/* T1 (Top-Left): moves up-left (-40, -40) */}
-              <g style={{ transform: `translate(${-40 * t}px, ${-40 * t}px)`, transition: 'transform 0.1s linear' }}>
-                <polygon points="120,120 200,120 200,180" className="fill-amber-400 stroke-amber-500 stroke-2" />
-                <text x="175" y="138" className="font-bold text-xs fill-amber-900 opacity-50">T1</text>
+              {/* T2: moves down-left */}
+              <g style={{ transform: `translate(${-80 * t}px, ${-60 * t}px)`, transition: 'transform 0.1s linear' }}>
+                <polygon points="240,160 180,160 180,240" className="fill-amber-400/90 stroke-amber-500 stroke-2" />
+                <text x="195" y="190" className="font-bold text-xs fill-amber-900 opacity-50">T2</text>
               </g>
 
-              {/* T2 (Top-Right): moves up-right (40, -40) */}
-              <g style={{ transform: `translate(${40 * t}px, ${-40 * t}px)`, transition: 'transform 0.1s linear' }}>
-                <polygon points="220,120 220,200 160,200" className="fill-amber-400/90 stroke-amber-500 stroke-2" />
-                <text x="205" y="175" className="font-bold text-xs fill-amber-900 opacity-50">T2</text>
+              {/* T3: moves up-right */}
+              <g style={{ transform: `translate(${60 * t}px, ${-80 * t}px)`, transition: 'transform 0.1s linear' }}>
+                <polygon points="180,240 180,180 100,180" className="fill-amber-400/80 stroke-amber-500 stroke-2" />
+                <text x="150" y="200" className="font-bold text-xs fill-amber-900 opacity-50">T3</text>
               </g>
 
-              {/* T3 (Bottom-Right): moves down-right (40, 40) */}
-              <g style={{ transform: `translate(${40 * t}px, ${40 * t}px)`, transition: 'transform 0.1s linear' }}>
-                <polygon points="220,220 140,220 140,160" className="fill-amber-400/80 stroke-amber-500 stroke-2" />
-                <text x="165" y="205" className="font-bold text-xs fill-amber-900 opacity-50">T3</text>
+              {/* T4 */}
+              <g style={{ transition: 'transform 0.1s linear' }}>
+                <polygon points="100,180 160,180 160,100" className="fill-amber-400/70 stroke-amber-500 stroke-2" />
+                <text x="135" y="150" className="font-bold text-xs fill-amber-900 opacity-50">T4</text>
               </g>
 
-              {/* T4 (Bottom-Left): moves down-left (-40, 40) */}
-              <g style={{ transform: `translate(${-40 * t}px, ${40 * t}px)`, transition: 'transform 0.1s linear' }}>
-                <polygon points="120,220 120,140 180,140" className="fill-amber-400/70 stroke-amber-500 stroke-2" />
-                <text x="135" y="165" className="font-bold text-xs fill-amber-900 opacity-50">T4</text>
-              </g>
-
-              {/* Small central square (b-a) = 20. Originally at (150, 150) -> (170, 170). Does not move. */}
-              <rect x="150" y="150" width="20" height="20" className="fill-indigo-600 stroke-indigo-700 stroke-2 shadow-sm" />
-              <text x="160" y="164" textAnchor="middle" className="font-extrabold text-[9px] fill-white opacity-85">c-b</text>
+              {/* Small central square (b-a) = 20. */}
+              <rect x="160" y="160" width="20" height="20" className="fill-indigo-600 stroke-indigo-700 stroke-2 shadow-sm" />
+              <text x="170" y="173" textAnchor="middle" className="font-extrabold text-[9px] fill-white opacity-85">c-b</text>
 
               {/* Secondary square guides in final layout (destinations showing a^2 and b^2) */}
               {t > 0.8 && (
                 <g className="animate-in fade-in duration-300">
                   {/* Square a^2 guide on the left */}
-                  <rect x="80" y="80" width="60" height="60" fill="none" className="stroke-red-500 stroke-2 stroke-dashed opacity-50" />
-                  <text x="110" y="70" textAnchor="middle" className="font-bold text-xs fill-red-500">Cateto a²</text>
+                  <rect x="100" y="100" width="60" height="60" fill="none" className="stroke-red-500 stroke-2 stroke-dashed opacity-50" />
+                  <text x="130" y="90" textAnchor="middle" className="font-bold text-xs fill-red-500">Cateto a²</text>
                   
                   {/* Square b^2 guide on the right */}
-                  <rect x="200" y="200" width="80" height="80" fill="none" className="stroke-blue-500 stroke-2 stroke-dashed opacity-50" />
-                  <text x="240" y="295" textAnchor="middle" className="font-bold text-xs fill-blue-500">Cateto b²</text>
+                  <rect x="160" y="100" width="80" height="80" fill="none" className="stroke-blue-500 stroke-2 stroke-dashed opacity-50" />
+                  <text x="200" y="90" textAnchor="middle" className="font-bold text-xs fill-blue-500">Cateto b²</text>
                 </g>
               )}
 
