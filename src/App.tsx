@@ -30,13 +30,21 @@ export default function App() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col lg:flex-row lg:items-center lg:h-16 gap-4 py-4 lg:py-0">
             {/* Logo */}
-            <div className="flex items-center shrink-0">
-              <div className="bg-indigo-600 text-white p-2 rounded-lg mr-3">
-                <Triangle size={20} className="fill-indigo-100" />
+            <div className="flex items-center justify-between w-full lg:w-auto shrink-0 gap-3">
+              <div className="flex items-center">
+                <div className="bg-indigo-600 text-white p-2 rounded-lg mr-3 shadow-md">
+                  <Triangle size={22} className="fill-indigo-100" />
+                </div>
+                <h1 className="text-2xl lg:text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-indigo-900 tracking-tight">
+                  Teorema de Pitágoras
+                </h1>
               </div>
-              <h1 className="text-xl font-bold text-slate-800 tracking-tight">
-                Teorema de Pitágoras
-              </h1>
+              
+              {/* Badge Profesora Naomi */}
+              <div className="flex items-center gap-1.5 px-3 py-1 bg-indigo-50 border border-indigo-100 text-indigo-700 rounded-full font-bold text-xs shadow-sm shrink-0">
+                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                <span>Profesora Naomi 👩‍🏫</span>
+              </div>
             </div>
             
             {/* Tabs */}
@@ -84,6 +92,27 @@ export default function App() {
           </motion.div>
         </AnimatePresence>
       </main>
+
+      {/* Footer Institucional */}
+      <footer className="w-full bg-white border-t border-slate-200 py-6 mt-12 shadow-[0_-1px_3px_rgba(0,0,0,0.02)]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-4">
+          <div className="flex items-center gap-2">
+            <div className="bg-indigo-50 text-indigo-700 p-1.5 rounded-lg border border-indigo-100">
+              <Triangle size={14} className="fill-indigo-200" />
+            </div>
+            <span className="text-sm font-semibold text-slate-700">Teorema de Pitágoras</span>
+          </div>
+          <div className="text-slate-500 text-sm font-medium flex items-center gap-1.5 flex-wrap justify-center">
+            <span>Creado con ❤️ para sus alumnos por la</span>
+            <span className="font-extrabold text-indigo-600 bg-indigo-50 px-3 py-1 rounded-full border border-indigo-100">
+              Profesora Naomi Urrea
+            </span>
+          </div>
+          <div className="text-xs text-slate-400">
+            © {new Date().getFullYear()} · Todos los derechos reservados
+          </div>
+        </div>
+      </footer>
 
     </div>
   );

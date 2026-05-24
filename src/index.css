@@ -20,7 +20,7 @@
 
 @layer base {
   body {
-    @apply bg-slate-50 text-slate-900 antialiased selection:bg-indigo-500/20 text-[1.05rem] leading-relaxed;
+    @apply bg-slate-50 text-slate-900 antialiased selection:bg-indigo-500/20 text-[1.15rem] leading-relaxed;
   }
 }
 

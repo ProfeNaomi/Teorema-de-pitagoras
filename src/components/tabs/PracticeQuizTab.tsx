@@ -13,28 +13,124 @@ type Question = {
 
 const quizQuestions: Question[] = [
   {
-    text: "Si los catetos miden 6 y 8, ¿cuánto mide la hipotenusa?",
+    text: "Si los catetos de un triángulo rectángulo miden 3 cm y 4 cm, ¿cuánto mide la hipotenusa?",
+    options: ["5 cm", "7 cm", "25 cm", "6 cm"],
+    correctIndex: 0,
+    explanation: "a² + b² = c² ➔ 3² + 4² = c² ➔ 9 + 16 = 25. La hipotenusa es la raíz cuadrada de 25, que es 5 cm. Esta es la terna pitagórica más famosa del mundo."
+  },
+  {
+    text: "Si los catetos de un triángulo rectángulo miden 6 y 8, ¿cuánto mide la hipotenusa?",
     options: ["10", "14", "100", "8"],
     correctIndex: 0,
     explanation: "a² + b² = c² ➔ 6² + 8² = c² ➔ 36 + 64 = 100. La hipotenusa es la raíz cuadrada de 100, que es 10."
   },
   {
-    text: "Si la hipotenusa mide 13 y un cateto mide 5, ¿cuánto mide el otro cateto?",
+    text: "Si la hipotenusa de un triángulo rectángulo mide 13 y un cateto mide 5, ¿cuánto mide el otro cateto?",
     options: ["144", "12", "18", "8"],
     correctIndex: 1,
-    explanation: "x² + 5² = 13² ➔ x² + 25 = 169 ➔ x² = 169 - 25 ➔ x² = 144. La raíz de 144 es 12."
+    explanation: "x² + 5² = 13² ➔ x² + 25 = 169 ➔ x² = 169 - 25 ➔ x² = 144. La raíz cuadrada de 144 es 12."
   },
   {
-    text: "¿Cuál de estos conjuntos NO es una terna pitagórica?",
+    text: "¿Cuál de estos conjuntos numéricos NO es una terna pitagórica?",
     options: ["3, 4, 5", "5, 12, 13", "6, 8, 10", "4, 5, 6"],
     correctIndex: 3,
-    explanation: "4² + 5² = 16 + 25 = 41. Pero 6² = 36. 41 no es igual a 36, por lo que (4,5,6) no es una terna pitagórica."
+    explanation: "4² + 5² = 16 + 25 = 41. Sin embargo, 6² = 36. Como 41 no es igual a 36, el conjunto (4, 5, 6) no es una terna pitagórica."
   },
   {
-    text: "El teorema de Pitágoras se aplica...",
-    options: ["A cualquier triángulo", "Solo a triángulos isósceles", "Solo a triángulos rectángulos", "A los cuadrados"],
+    text: "¿A qué tipo de triángulos se aplica de forma estricta el teorema de Pitágoras?",
+    options: ["A cualquier tipo de triángulo", "Solo a triángulos isósceles", "Solo a triángulos rectángulos", "A todos los paralelogramos"],
     correctIndex: 2,
-    explanation: "El teorema es una propiedad exclusiva de los triángulos rectángulos (que tienen un ángulo de 90°)."
+    explanation: "El teorema de Pitágoras es una propiedad geométrica exclusiva de los triángulos rectángulos (aquellos que poseen un ángulo recto de 90°)."
+  },
+  {
+    text: "En un triángulo rectángulo, ¿cuál es la medida del ángulo que se encuentra exactamente opuesto a la hipotenusa?",
+    options: ["45°", "90°", "180°", "60°"],
+    correctIndex: 1,
+    explanation: "La hipotenusa siempre se encuentra en el lado opuesto al ángulo recto de 90 grados, que además es el ángulo más grande de todo el triángulo."
+  },
+  {
+    text: "Una escalera de 10 metros se apoya contra una pared vertical. Si la base de la escalera se sitúa a 6 metros de la pared, ¿a qué altura de la pared llega la escalera?",
+    options: ["8 metros", "4 metros", "16 metros", "9 metros"],
+    correctIndex: 0,
+    explanation: "La escalera es la hipotenusa (10) y la base es un cateto (6). Altura² + 6² = 10² ➔ Altura² + 36 = 100 ➔ Altura² = 64. La raíz de 64 es 8 metros."
+  },
+  {
+    text: "Una pantalla de televisión tiene un ancho de 24 pulgadas y un alto de 18 pulgadas. ¿De cuántas pulgadas es la diagonal de la pantalla?",
+    options: ["30 pulgadas", "42 pulgadas", "26 pulgadas", "35 pulgadas"],
+    correctIndex: 0,
+    explanation: "El ancho y el alto forman los dos catetos. Diagonal² = 24² + 18² = 576 + 324 = 900. La raíz cuadrada de 900 es 30 pulgadas."
+  },
+  {
+    text: "Un excursionista camina 9 km en línea recta hacia el norte y después 12 km hacia el este. ¿A qué distancia en línea recta se encuentra de su punto de partida?",
+    options: ["15 km", "21 km", "18 km", "13 km"],
+    correctIndex: 0,
+    explanation: "Las direcciones norte y este forman un ángulo recto (90°). Los catetos son 9 y 12. Distancia² = 9² + 12² = 81 + 144 = 225. La raíz cuadrada de 225 es 15 km."
+  },
+  {
+    text: "Un árbol proyecta una sombra de 15 metros en el suelo. Si la distancia en línea recta desde la copa del árbol hasta el extremo de la sombra es de 17 metros, ¿cuál es la altura del árbol?",
+    options: ["8 metros", "2 metros", "32 metros", "10 metros"],
+    correctIndex: 0,
+    explanation: "La sombra es un cateto (15) y la visual es la hipotenusa (17). Altura² + 15² = 17² ➔ Altura² + 225 = 289 ➔ Altura² = 64. La raíz de 64 es 8 metros."
+  },
+  {
+    text: "Si multiplicamos todos los elementos de la terna pitagórica (3, 4, 5) por la constante 3, obtenemos (9, 12, 15). ¿Se cumple el teorema para este nuevo grupo?",
+    options: ["Sí, cualquier múltiplo de una terna pitagórica sigue siendo una terna pitagórica", "No, al multiplicar se pierde la propiedad fundamental", "Solo si multiplicamos por números pares", "Solo funciona si dibujamos el triángulo en una cuadrícula"],
+    correctIndex: 0,
+    explanation: "Si a² + b² = c², entonces (k·a)² + (k·b)² = k²(a² + b²) = (k·c)². Los múltiplos homotéticos conservan la proporcionalidad pitagórica."
+  },
+  {
+    text: "¿Cuántos nudos equidistantes utilizaban los antiguos constructores egipcios en sus cuerdas para trazar ángulos rectos perfectos en las pirámides?",
+    options: ["12 nudos (formando lados de 3, 4 y 5)", "10 nudos (formando lados de 2, 3 y 5)", "3 nudos (formando lados de 1, 1 y 1)", "9 nudos"],
+    correctIndex: 0,
+    explanation: "Los constructores egipcios amarraban cuerdas con 12 nudos equidistantes. Al tensarla en las esquinas de lados 3, 4 y 5 nudos, obtenían un ángulo recto perfecto."
+  },
+  {
+    text: "¿Qué civilización grabó tablillas de arcilla con ternas pitagóricas (como la Plimpton 322) más de mil años antes del nacimiento de Pitágoras?",
+    options: ["Los Babilonios", "Los Romanos", "Los Mayas", "Los Griegos"],
+    correctIndex: 0,
+    explanation: "La tablilla babilónica Plimpton 322, fechada en 1800 a.C., demuestra que esta civilización ya dominaba la teoría de los números pitagóricos mediante escritura cuneiforme."
+  },
+  {
+    text: "¿Qué tipo de número descubrieron los pitagóricos al aplicar el teorema a un triángulo de catetos iguales a 1, provocando una crisis intelectual?",
+    options: ["Un número irracional (la raíz cuadrada de 2, √2)", "El número Pi (π)", "El número de oro o razón áurea (φ)", "Un número negativo"],
+    correctIndex: 0,
+    explanation: "Al tener catetos de lado 1, la hipotenusa es c = √1² + 1² = √2. Los pitagóricos descubrieron que √2 no puede escribirse como una fracción, lo que rompió su filosofía cosmológica."
+  },
+  {
+    text: "De acuerdo con las crónicas históricas, ¿qué le sucedió a Hípaso de Metaponto tras revelar al público el secreto de la existencia de números irracionales?",
+    options: ["Fue arrojado al mar por sus compañeros de secta", "Recibió una distinción de honor por el rey", "Fue exiliado a la biblioteca de Alejandría", "Fue nombrado director de la Escuela Pitagórica"],
+    correctIndex: 0,
+    explanation: "La secta pitagórica creía que el cosmos se basaba en enteros y fracciones racionales. La existencia de √2 rompía su doctrina. Considerado traición, Hípaso fue arrojado al mar."
+  },
+  {
+    text: "Si en lugar de construir cuadrados sobre los lados de un triángulo rectángulo construimos semicírculos, ¿se mantiene la igualdad de las superficies?",
+    options: ["Sí, el teorema se cumple para cualquier figura geométrica semejante construida sobre los lados", "No, la ecuación c² = a² + b² es estrictamente para cuadrados", "Solo funciona si las figuras tienen bordes rectos", "Solo funciona si son triángulos equiláteros"],
+    correctIndex: 0,
+    explanation: "El teorema generalizado de Pitágoras establece que si se construyen figuras semejantes sobre los lados de un triángulo rectángulo, el área de la hipotenusa equivale a la suma de las de los catetos."
+  },
+  {
+    text: "La fórmula matemática para calcular la distancia entre dos coordenadas en el plano cartesiano es una aplicación directa de...",
+    options: ["El Teorema de Pitágoras", "La Regla de Tres Simple", "La Ley de Gravitación Universal", "La Geometría Esférica"],
+    correctIndex: 0,
+    explanation: "Al trazar la recta entre dos puntos (x₁,y₁) y (x₂,y₂), formamos un triángulo rectángulo virtual donde las diferencias en X e Y son los catetos. La distancia d es la hipotenusa: d = √((x₂-x₁)² + (y₂-y₁)²)."
+  },
+  {
+    text: "Si los lados de un triángulo miden exactamente 7 cm, 24 cm y 25 cm, ¿podemos garantizar matemáticamente que es un triángulo rectángulo?",
+    options: ["Sí, debido a que se cumple la relación recíproca: 7² + 24² = 25²", "No, ya que no nos han especificado los ángulos interiores", "Solo si es un triángulo de lados simétricos", "No, el teorema de Pitágoras nunca es aplicable a la inversa"],
+    correctIndex: 0,
+    explanation: "El teorema recíproco dice que si a² + b² = c², el ángulo opuesto al lado mayor es necesariamente recto (90°). En este caso, 49 + 576 = 625, lo cual coincide con 25² (625)."
+  },
+  {
+    text: "¿Qué matemático propuso la generalización xⁿ + yⁿ = zⁿ, afirmando que no tiene soluciones enteras no nulas para n > 2?",
+    options: ["Pierre de Fermat", "Isaac Newton", "Albert Einstein", "René Descartes"],
+    correctIndex: 0,
+    explanation: "Pierre de Fermat anotó en 1637 que tenía una demostración para este teorema, conocido como el Último Teorema de Fermat. La prueba tardó 358 años en resolverse, gracias a Andrew Wiles en 1995."
+  },
+  {
+    text: "Si en un triángulo cualquiera se cumple que la suma a² + b² es MENOR que c² (siendo c el lado más largo), ¿qué clase de triángulo tenemos?",
+    options: ["Un triángulo obtusángulo (posee un ángulo mayor de 90°)", "Un triángulo acutángulo (todos sus ángulos miden menos de 90°)", "Un triángulo equilátero regular", "Es matemáticamente imposible que eso ocurra"],
+    correctIndex: 0,
+    explanation: "Por la Ley de Cosenos: c² = a² + b² - 2ab·cos(C). Si a² + b² < c², entonces cos(C) es negativo, lo que significa que el ángulo C es mayor de 90 grados (obtuso)."
   }
 ];
 
