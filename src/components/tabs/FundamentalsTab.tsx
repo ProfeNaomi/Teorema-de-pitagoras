@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { motion } from 'motion/react';
-import { TriangleRight, Info } from 'lucide-react';
+import { TriangleRight, Info, CheckCircle, XCircle } from 'lucide-react';
 import 'katex/dist/katex.min.css';
 import { InlineMath } from 'react-katex';
 
 export function FundamentalsTab() {
   const [hoveredPart, setHoveredPart] = useState<'a' | 'b' | 'c' | 'angle' | null>(null);
+  const [isRightAngle, setIsRightAngle] = useState(true);
 
   const getPartColor = (part: string) => {
     switch(part) {
@@ -135,49 +136,150 @@ export function FundamentalsTab() {
         {/* Definitions */}
         <div className="flex flex-col gap-4">
           <div 
-            className={`glass-panel p-6 rounded-2xl border-l-4 transition-colors duration-300 ${hoveredPart === 'angle' ? 'border-amber-400 bg-amber-50' : 'border-slate-200'}`}
+            className={`glass-panel p-6 rounded-2xl border-l-[6px] transition-colors duration-300 ${hoveredPart === 'angle' ? 'border-amber-400 bg-amber-50' : 'border-slate-200'}`}
             onMouseEnter={() => setHoveredPart('angle')}
             onMouseLeave={() => setHoveredPart(null)}
           >
-            <h4 className="font-bold text-slate-800 mb-1 flex items-center gap-2">
-              El Ángulo Recto <span className="text-amber-500 text-sm">(90°)</span>
+            <h4 className="font-bold text-slate-800 mb-2 flex items-center gap-2 text-xl">
+              El Ángulo Recto <span className="text-amber-500 text-lg">(90°)</span>
             </h4>
-            <p className="text-sm text-slate-600">
+            <p className="text-base text-slate-600 leading-relaxed">
               Es el ángulo que mide exactamente 90 grados. Forma una esquina perfecta (como la letra L o la esquina de un cuadrado). Es la característica que define al triángulo rectángulo.
             </p>
           </div>
 
           <div 
-            className={`glass-panel p-6 rounded-2xl border-l-4 transition-colors duration-300 ${hoveredPart === 'a' || hoveredPart === 'b' ? 'border-blue-400 bg-blue-50' : 'border-slate-200'}`}
+            className={`glass-panel p-6 rounded-2xl border-l-[6px] transition-colors duration-300 ${hoveredPart === 'a' || hoveredPart === 'b' ? 'border-blue-400 bg-blue-50' : 'border-slate-200'}`}
             onMouseEnter={() => setHoveredPart('b')}
             onMouseLeave={() => setHoveredPart(null)}
           >
-            <h4 className="font-bold text-slate-800 mb-1 flex items-center gap-2">
+            <h4 className="font-bold text-slate-800 mb-2 flex items-center gap-2 text-xl">
               Los Catetos <span className="text-red-500">a</span> y <span className="text-blue-500">b</span>
             </h4>
-            <p className="text-sm text-slate-600">
+            <p className="text-base text-slate-600 leading-relaxed">
               Son los dos lados más cortos del triángulo. Tienen una propiedad especial: son los dos lados que "tocan" y forman el ángulo recto de 90 grados.
             </p>
           </div>
 
           <div 
-            className={`glass-panel p-6 rounded-2xl border-l-4 transition-colors duration-300 ${hoveredPart === 'c' ? 'border-purple-400 bg-purple-50' : 'border-slate-200'}`}
+            className={`glass-panel p-6 rounded-2xl border-l-[6px] transition-colors duration-300 ${hoveredPart === 'c' ? 'border-purple-400 bg-purple-50' : 'border-slate-200'}`}
             onMouseEnter={() => setHoveredPart('c')}
             onMouseLeave={() => setHoveredPart(null)}
           >
-            <h4 className="font-bold text-slate-800 mb-1 flex items-center gap-2">
+            <h4 className="font-bold text-slate-800 mb-2 flex items-center gap-2 text-xl">
               La Hipotenusa <span className="text-purple-500">c</span>
             </h4>
-            <p className="text-sm text-slate-600">
+            <p className="text-base text-slate-600 leading-relaxed">
               Es el lado más largo del triángulo. Siempre se encuentra exactamente en el lado opuesto al ángulo recto. Nunca toca el ángulo de 90 grados.
             </p>
           </div>
           
-          <div className="mt-4 bg-sky-50 p-5 rounded-xl border border-sky-100 text-sm flex gap-3 text-sky-900 items-start shadow-sm">
-            <Info className="w-5 h-5 text-sky-600 shrink-0 mt-0.5" />
+          <div className="mt-4 bg-sky-50 p-5 rounded-xl border border-sky-200 text-base flex gap-3 text-sky-900 items-start shadow-sm">
+            <Info className="w-6 h-6 text-sky-600 shrink-0 mt-0.5" />
             <p>
               El Teorema de Pitágoras establece una relación matemática perfecta entre estos tres lados. Si conoces la medida de dos de ellos, <strong>siempre puedes calcular el tercero</strong>.
             </p>
+          </div>
+        </div>
+      </div>
+
+      {/* Recíproco del Teorema Section */}
+      <div className="mt-16 pt-12 border-t border-slate-200">
+        <h3 className="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-sky-600 mb-4">
+          El Recíproco del Teorema
+        </h3>
+        <p className="text-xl text-slate-600 mb-8 max-w-4xl leading-relaxed">
+          El Teorema funciona en ambos sentidos. <strong>Si en un triángulo se cumple la ecuación <InlineMath math="a^2 + b^2 = c^2" />, ENTONCES es obligatorio que el triángulo tenga un ángulo recto (90°)</strong>. Si la ecuación no calza, el triángulo está "descuadrado" y no es rectángulo.
+        </p>
+        
+        <div className="glass-panel p-8 rounded-3xl grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+          <div className="flex flex-col gap-6">
+            <div className={`p-6 rounded-2xl border-l-[6px] transition-colors duration-500 shadow-sm ${isRightAngle ? 'border-emerald-500 bg-emerald-50' : 'border-red-500 bg-red-50'}`}>
+              {isRightAngle ? (
+                <>
+                  <h4 className="font-bold text-emerald-700 text-2xl mb-4 flex items-center gap-2"><CheckCircle className="w-7 h-7" /> Sí se cumple la igualdad</h4>
+                  <div className="text-slate-700 text-xl flex flex-col gap-2 bg-white/50 p-4 rounded-xl">
+                    <BlockMath math="3^2 + 4^2 = 5^2" />
+                    <BlockMath math="9 + 16 = 25" />
+                  </div>
+                  <p className="text-emerald-800 font-bold mt-4 text-center text-lg">¡El ángulo es perfectamente recto (90°)!</p>
+                </>
+              ) : (
+                <>
+                  <h4 className="font-bold text-red-700 text-2xl mb-4 flex items-center gap-2"><XCircle className="w-7 h-7" /> No se cumple la igualdad</h4>
+                  <div className="text-slate-700 text-xl flex flex-col gap-2 bg-white/50 p-4 rounded-xl">
+                    <BlockMath math="3^2 + 4^2 \neq 5.5^2" />
+                    <BlockMath math="25 \neq 30.25" />
+                  </div>
+                  <p className="text-red-800 font-bold mt-4 text-center text-lg">El ángulo es mayor a 90°. El triángulo se "abre".</p>
+                </>
+              )}
+            </div>
+            
+            <button 
+              onClick={() => setIsRightAngle(!isRightAngle)}
+              className={`w-full py-5 rounded-2xl font-bold text-white shadow-md transition-all duration-300 hover:scale-[1.02] active:scale-95 text-lg ${isRightAngle ? 'bg-gradient-to-r from-red-500 to-orange-500' : 'bg-gradient-to-r from-emerald-500 to-teal-500'}`}
+            >
+              {isRightAngle ? 'Ver qué pasa si "c" es más largo (no se cumple)' : 'Volver al triángulo rectángulo perfecto'}
+            </button>
+          </div>
+          
+          <div className="relative h-[300px] flex items-center justify-center bg-white rounded-2xl border border-slate-200 shadow-inner overflow-hidden">
+             <svg viewBox="-40 -20 160 140" className="w-full h-full max-w-[250px] overflow-visible">
+                {/* Dynamic Polygon */}
+                <motion.polygon 
+                  animate={{ 
+                    points: isRightAngle ? "0,100 80,100 0,40" : "0,100 80,100 -30,50",
+                    fill: isRightAngle ? "#ecfdf5" : "#fef2f2",
+                    stroke: isRightAngle ? "#10b981" : "#ef4444"
+                  }}
+                  transition={{ type: "spring", stiffness: 80, damping: 15 }}
+                  strokeWidth="2"
+                />
+                
+                {/* Leg B */}
+                <line x1="0" y1="100" x2="80" y2="100" stroke="#3b82f6" strokeWidth="4" strokeLinecap="round" />
+                <text x="40" y="115" textAnchor="middle" className="font-bold fill-blue-600">b = 4</text>
+                
+                {/* Leg A */}
+                <motion.line 
+                  x1="0" y1="100" 
+                  animate={{ x2: isRightAngle ? 0 : -30, y2: isRightAngle ? 40 : 50 }} 
+                  stroke="#ef4444" strokeWidth="4" strokeLinecap="round"
+                  transition={{ type: "spring", stiffness: 80, damping: 15 }}
+                />
+                <motion.text 
+                  animate={{ x: isRightAngle ? -15 : -35, y: isRightAngle ? 70 : 80 }} 
+                  textAnchor="middle" className="font-bold fill-red-600"
+                  transition={{ type: "spring", stiffness: 80, damping: 15 }}
+                >a = 3</motion.text>
+                
+                {/* Hypotenuse C */}
+                <motion.line 
+                  x1="80" y1="100" 
+                  animate={{ x2: isRightAngle ? 0 : -30, y2: isRightAngle ? 40 : 50 }} 
+                  stroke="#8b5cf6" strokeWidth="4" strokeLinecap="round"
+                  transition={{ type: "spring", stiffness: 80, damping: 15 }}
+                />
+                <motion.text 
+                  animate={{ x: isRightAngle ? 45 : 30, y: isRightAngle ? 65 : 60 }} 
+                  textAnchor="middle" className="font-bold fill-purple-600"
+                  transition={{ type: "spring", stiffness: 80, damping: 15 }}
+                >c = {isRightAngle ? '5' : '5.5'}</motion.text>
+
+                {/* Angle Indicator */}
+                {isRightAngle ? (
+                  <motion.g initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.3 }}>
+                    <rect x="0" y="85" width="15" height="15" fill="#fef3c7" stroke="#f59e0b" strokeWidth="2" />
+                    <text x="8" y="115" textAnchor="middle" className="text-[10px] font-bold fill-amber-600">90°</text>
+                  </motion.g>
+                ) : (
+                  <motion.g initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.3 }}>
+                    <path d="M 0,80 A 20,20 0 0,0 -16.5,88.5" fill="none" stroke="#f59e0b" strokeWidth="3" />
+                    <text x="-15" y="115" textAnchor="middle" className="text-[10px] font-bold fill-amber-600">120°</text>
+                  </motion.g>
+                )}
+             </svg>
           </div>
         </div>
       </div>

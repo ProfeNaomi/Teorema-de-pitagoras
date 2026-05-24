@@ -14,11 +14,15 @@ export function OriginTab() {
             Aunque lleva el nombre de Pitágoras de Samos, un filósofo griego del siglo VI a.C., la relación matemática ya era conocida por civilizaciones antiguas mucho antes de su nacimiento.
           </p>
         </div>
-        <div className="w-full md:w-1/3 aspect-video bg-white rounded-2xl border border-slate-200 flex items-center justify-center shadow-lg relative overflow-hidden">
-           <Landmark className="w-24 h-24 text-violet-100 absolute -right-4 -bottom-4" />
-           <div className="text-center z-10">
-             <History className="w-12 h-12 text-violet-500 mx-auto mb-2" />
-             <span className="font-medium text-slate-500 text-sm">Viaje en el Tiempo</span>
+        <div className="w-full md:w-1/3 aspect-video bg-white rounded-2xl border border-slate-200 shadow-lg relative overflow-hidden group">
+           <img 
+             src="https://images.unsplash.com/photo-1555993539-1732b0258235?auto=format&fit=crop&q=80&w=800" 
+             alt="Antigua Grecia" 
+             className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-90"
+           />
+           <div className="absolute inset-0 bg-gradient-to-t from-violet-900/90 to-transparent flex flex-col items-center justify-end pb-4">
+             <History className="w-10 h-10 text-white mx-auto mb-1 drop-shadow-md" />
+             <span className="font-bold text-white text-sm drop-shadow-md">Viaje en el Tiempo</span>
            </div>
         </div>
       </div>
@@ -73,18 +77,35 @@ export function OriginTab() {
         <p className="text-slate-600 leading-relaxed mb-6 max-w-3xl">
           El teorema de Pitágoras es el núcleo de cómo medimos distancias en nuestro universo. Sin él, la tecnología moderna no podría existir. Es la base de la geometría analítica y se utiliza en:
         </p>
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-          <div className="bg-slate-50 p-4 rounded-xl border border-slate-200">
-            <h4 className="font-semibold text-emerald-600 mb-2">Sistema GPS</h4>
-            <p className="text-xs text-slate-500">Calcula tu posición exacta triangulando la distancia entre tu dispositivo y los satélites en órbita usando matemáticas en 3D.</p>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+          <div className="bg-slate-50 rounded-xl border border-slate-200 overflow-hidden shadow-sm group">
+            <div className="h-32 w-full relative overflow-hidden">
+              <img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&q=80&w=800" alt="Sistema GPS" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
+            </div>
+            <div className="p-4">
+              <h4 className="font-bold text-emerald-600 mb-2 text-lg">Sistema GPS</h4>
+              <p className="text-sm text-slate-600">Calcula tu posición exacta triangulando la distancia entre tu dispositivo y los satélites en órbita usando matemáticas en 3D.</p>
+            </div>
           </div>
-          <div className="bg-slate-50 p-4 rounded-xl border border-slate-200">
-            <h4 className="font-semibold text-pink-600 mb-2">Arquitectura</h4>
-            <p className="text-xs text-slate-500">Asegura cimientos estables, techos con inclinaciones perfectas y estructuras perfectamente rectangulares.</p>
+          
+          <div className="bg-slate-50 rounded-xl border border-slate-200 overflow-hidden shadow-sm group">
+            <div className="h-32 w-full relative overflow-hidden">
+              <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=800" alt="Arquitectura Moderna" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
+            </div>
+            <div className="p-4">
+              <h4 className="font-bold text-pink-600 mb-2 text-lg">Arquitectura</h4>
+              <p className="text-sm text-slate-600">Asegura cimientos estables, techos con inclinaciones perfectas y estructuras perfectamente rectangulares.</p>
+            </div>
           </div>
-          <div className="bg-slate-50 p-4 rounded-xl border border-slate-200">
-            <h4 className="font-semibold text-sky-600 mb-2">Videojuegos (3D)</h4>
-            <p className="text-xs text-slate-500">Motores gráficos lo utilizan constantemente para calcular distancias entre objetos, colisiones y renderizado de gráficos.</p>
+          
+          <div className="bg-slate-50 rounded-xl border border-slate-200 overflow-hidden shadow-sm group">
+            <div className="h-32 w-full relative overflow-hidden">
+              <img src="https://images.unsplash.com/photo-1552820728-8b83bb6b773f?auto=format&fit=crop&q=80&w=800" alt="Videojuegos 3D" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
+            </div>
+            <div className="p-4">
+              <h4 className="font-bold text-sky-600 mb-2 text-lg">Videojuegos (3D)</h4>
+              <p className="text-sm text-slate-600">Motores gráficos lo utilizan constantemente para calcular distancias entre objetos, colisiones y renderizado de gráficos.</p>
+            </div>
           </div>
         </div>
       </div>

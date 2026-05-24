@@ -316,16 +316,16 @@ export function ProofsGalleryTab() {
 
                 <svg viewBox="0 0 340 340" className="w-full h-full absolute inset-0 z-10 overflow-visible">
                   
-                  {/* Central Triangle (right angle at bottom) */}
-                  <polygon points="120,170 220,170 184,122" className="fill-slate-700 stroke-slate-500 stroke-2" />
+                  {/* Central Triangle (hypotenuse on top) */}
+                  <polygon points="120,150 220,150 184,198" className="fill-slate-700 stroke-slate-500 stroke-2" />
                   
-                  {/* Container C (c^2) directly below hypotenuse */}
-                  <g transform="translate(120, 170)">
+                  {/* Container C (c^2) directly above hypotenuse */}
+                  <g transform="translate(120, 50)">
                     <rect x="0" y="0" width="100" height="100" fill="none" className="stroke-slate-400 stroke-2" />
-                    {/* Water fills from the bottom of the container */}
+                    {/* Water respects gravity */}
                     <rect 
                       x="2" 
-                      y={2 + 96 * (1 - waterLevel)} 
+                      y={(waterAngle / 180) % 2 !== 0 ? 2 : 2 + 96 * (1 - waterLevel)} 
                       width="96" 
                       height={96 * waterLevel} 
                       rx="2"
@@ -335,31 +335,31 @@ export function ProofsGalleryTab() {
                   </g>
 
                   {/* Container A (a^2) on the right leg */}
-                  <g transform="translate(184, 122) rotate(53.13)">
-                    <rect x="0" y="-60" width="60" height="60" fill="none" className="stroke-slate-400 stroke-2" />
+                  <g transform="translate(184, 198) rotate(-53.13)">
+                    <rect x="0" y="0" width="60" height="60" fill="none" className="stroke-slate-400 stroke-2" />
                     <rect 
                       x="2" 
-                      y={-58 + 56 * waterLevel} 
+                      y={(waterAngle / 180) % 2 === 0 ? 2 + 56 * waterLevel : 2} 
                       width="56" 
                       height={56 * (1 - waterLevel)} 
                       rx="2"
                       className="fill-blue-500/85 stroke-blue-600/30 stroke-1 transition-all duration-1000 ease-in-out"
                     />
-                    <text x="30" y="-25" textAnchor="middle" className="font-bold text-sm fill-slate-300 tracking-wider" transform="rotate(-53.13, 30, -25)">a²</text>
+                    <text x="30" y="35" textAnchor="middle" className="font-bold text-sm fill-slate-300 tracking-wider" transform="rotate(53.13, 30, 35)">a²</text>
                   </g>
 
                   {/* Container B (b^2) on the left leg */}
-                  <g transform="translate(120, 170) rotate(-36.87)">
-                    <rect x="0" y="-80" width="80" height="80" fill="none" className="stroke-slate-400 stroke-2" />
+                  <g transform="translate(120, 150) rotate(36.87)">
+                    <rect x="0" y="0" width="80" height="80" fill="none" className="stroke-slate-400 stroke-2" />
                     <rect 
                       x="2" 
-                      y={-78 + 76 * waterLevel} 
+                      y={(waterAngle / 180) % 2 === 0 ? 2 + 76 * waterLevel : 2} 
                       width="76" 
                       height={76 * (1 - waterLevel)} 
                       rx="2"
                       className="fill-blue-500/85 stroke-blue-600/30 stroke-1 transition-all duration-1000 ease-in-out"
                     />
-                    <text x="40" y="-35" textAnchor="middle" className="font-bold text-base fill-slate-300 tracking-wider" transform="rotate(36.87, 40, -35)">b²</text>
+                    <text x="40" y="45" textAnchor="middle" className="font-bold text-base fill-slate-300 tracking-wider" transform="rotate(-36.87, 40, 45)">b²</text>
                   </g>
 
                 </svg>

@@ -101,14 +101,14 @@ export default function App() {
           
           <div className="flex flex-col items-center gap-2">
             <div className="text-slate-500 text-sm font-medium flex items-center gap-1.5 flex-wrap justify-center">
-              <span>Creado con ❤️ para sus alumnos por la</span>
+              <span>Creada con ❤️ para mis alumnos por la</span>
               <span className="font-extrabold text-indigo-600 bg-indigo-50 px-3 py-1 rounded-full border border-indigo-100 flex items-center gap-1">
                 <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
                 Profesora Naomi Urrea
               </span>
             </div>
             <p className="text-slate-500 text-xs italic max-w-md text-center">
-              "Creado con amor para sus alumnos para que puedan desarrollar su intelecto y ser mejores personas."
+              "Creada con amor para mis alumnos para que puedan desarrollar su intelecto y ser mejores personas."
             </p>
           </div>
 
