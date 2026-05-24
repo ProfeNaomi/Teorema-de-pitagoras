@@ -286,6 +286,60 @@ export function PracticeQuizTab() {
               <RefreshCw className="w-5 h-5" />
             </button>
           </div>
+
+          {/* Inline Graficador Visual Section */}
+          <div className="mt-8 pt-6 border-t border-slate-200">
+            <h4 className="text-lg font-bold text-slate-800 mb-2">Graficador en Vivo</h4>
+            <div className="relative w-full aspect-video max-h-[250px] bg-slate-50 border border-slate-200 rounded-2xl overflow-hidden flex items-center justify-center shadow-inner">
+              <div className="absolute inset-0 opacity-20 pointer-events-none" style={{ backgroundImage: 'linear-gradient(to right, #94a3b8 1px, transparent 1px), linear-gradient(to bottom, #94a3b8 1px, transparent 1px)', backgroundSize: '15px 15px' }}></div>
+              
+              {(() => {
+                const valA = parseValue(sideA);
+                const valB = parseValue(sideB);
+                
+                if (!isNaN(valA) && !isNaN(valB) && valA > 0 && valB > 0) {
+                  const padding = 30;
+                  const maxW = 300;
+                  const maxH = 200;
+                  const scale = Math.min((maxW - padding*2) / valB, (maxH - padding*2) / valA);
+                  
+                  const pixelA = valA * scale;
+                  const pixelB = valB * scale;
+                  
+                  return (
+                    <svg width="300" height="200" className="overflow-visible z-10" viewBox="0 0 300 200">
+                      <g transform={`translate(${(300 - pixelB) / 2}, ${(200 + pixelA) / 2})`}>
+                        {/* Hypotenuse */}
+                        <line x1="0" y1={-pixelA} x2={pixelB} y2="0" stroke="#8b5cf6" strokeWidth="4" strokeLinecap="round" />
+                        <text x={pixelB / 2 + 10} y={-pixelA / 2 - 10} className="fill-purple-700 font-bold font-mono text-sm">
+                          c = {parseValue(hypotenuse) ? hypotenuse : '?'}
+                        </text>
+                        {/* Cateto A */}
+                        <line x1="0" y1="0" x2="0" y2={-pixelA} stroke="#ef4444" strokeWidth="4" strokeLinecap="round" />
+                        <text x="-20" y={-pixelA / 2} textAnchor="end" className="fill-red-700 font-bold font-mono text-sm" dominantBaseline="middle">
+                          a = {valA}
+                        </text>
+                        {/* Cateto B */}
+                        <line x1="0" y1="0" x2={pixelB} y2="0" stroke="#3b82f6" strokeWidth="4" strokeLinecap="round" />
+                        <text x={pixelB / 2} y="20" textAnchor="middle" className="fill-blue-700 font-bold font-mono text-sm">
+                          b = {valB}
+                        </text>
+                        {/* Right Angle Indicator */}
+                        <rect x="0" y="-12" width="12" height="12" fill="rgba(245, 158, 11, 0.2)" stroke="#f59e0b" strokeWidth="2" />
+                      </g>
+                    </svg>
+                  );
+                } else {
+                  return (
+                    <div className="z-10 text-slate-400 font-medium text-center text-sm px-4">
+                      Llena el Cateto A y B para graficar.
+                    </div>
+                  );
+                }
+              })()}
+            </div>
+          </div>
+
         </div>
 
         {/* Quiz Module */}
@@ -378,74 +432,6 @@ export function PracticeQuizTab() {
           )}
         </div>
       </div>
-      
-      {/* Graficador Visual Section */}
-      <div className="mt-8 glass-panel p-8 rounded-3xl border-t border-slate-200">
-        <h3 className="text-2xl font-bold text-slate-800 mb-2 flex items-center gap-2">
-          Graficador Automático
-        </h3>
-        <p className="text-slate-600 mb-6">
-          Ingresa al menos los catetos en la calculadora para que el triángulo se dibuje a escala automáticamente.
-        </p>
-        
-        <div className="relative w-full aspect-video max-h-[400px] bg-slate-50 border border-slate-200 rounded-2xl overflow-hidden flex items-center justify-center shadow-inner">
-          {/* Grid Background Pattern */}
-          <div className="absolute inset-0 opacity-20 pointer-events-none" style={{ backgroundImage: 'linear-gradient(to right, #94a3b8 1px, transparent 1px), linear-gradient(to bottom, #94a3b8 1px, transparent 1px)', backgroundSize: '20px 20px' }}></div>
-          
-          {(() => {
-            const valA = parseValue(sideA);
-            const valB = parseValue(sideB);
-            
-            if (!isNaN(valA) && !isNaN(valB) && valA > 0 && valB > 0) {
-              // Calculate scaling factor to fit within 300x200 box (with padding)
-              const padding = 40;
-              const maxW = 350;
-              const maxH = 250;
-              const scale = Math.min((maxW - padding*2) / valB, (maxH - padding*2) / valA);
-              
-              const pixelA = valA * scale;
-              const pixelB = valB * scale;
-              const hypotPixel = Math.sqrt(pixelA*pixelA + pixelB*pixelB);
-              
-              return (
-                <svg width="400" height="300" className="overflow-visible z-10" viewBox="0 0 400 300">
-                  <g transform={`translate(${(400 - pixelB) / 2}, ${(300 + pixelA) / 2})`}>
-                    
-                    {/* Hypotenuse */}
-                    <line x1="0" y1={-pixelA} x2={pixelB} y2="0" stroke="#8b5cf6" strokeWidth="4" strokeLinecap="round" />
-                    <text x={pixelB / 2 + 10} y={-pixelA / 2 - 10} className="fill-purple-700 font-bold font-mono">
-                      c = {parseValue(hypotenuse) ? hypotenuse : '?'}
-                    </text>
-                    
-                    {/* Cateto A */}
-                    <line x1="0" y1="0" x2="0" y2={-pixelA} stroke="#ef4444" strokeWidth="4" strokeLinecap="round" />
-                    <text x="-30" y={-pixelA / 2} textAnchor="end" className="fill-red-700 font-bold font-mono" dominantBaseline="middle">
-                      a = {valA}
-                    </text>
-                    
-                    {/* Cateto B */}
-                    <line x1="0" y1="0" x2={pixelB} y2="0" stroke="#3b82f6" strokeWidth="4" strokeLinecap="round" />
-                    <text x={pixelB / 2} y="25" textAnchor="middle" className="fill-blue-700 font-bold font-mono">
-                      b = {valB}
-                    </text>
-
-                    {/* Right Angle Indicator */}
-                    <rect x="0" y="-15" width="15" height="15" fill="rgba(245, 158, 11, 0.2)" stroke="#f59e0b" strokeWidth="2" />
-                    
-                  </g>
-                </svg>
-              );
-            } else {
-              return (
-                <div className="z-10 text-slate-400 font-medium text-center bg-white/80 p-6 rounded-2xl border border-slate-200">
-                  Introduce los valores de Cateto A y Cateto B para ver el gráfico.
-                </div>
-              );
-            }
-          })()}
-        </div>
-      </div>
-      
     </div>
   );
 }

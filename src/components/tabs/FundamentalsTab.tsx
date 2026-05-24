@@ -224,8 +224,8 @@ export function FundamentalsTab() {
             </button>
           </div>
           
-          <div className="relative h-[300px] flex items-center justify-center bg-white rounded-2xl border border-slate-200 shadow-inner overflow-hidden">
-             <svg viewBox="-40 -20 160 140" className="w-full h-full max-w-[250px] overflow-visible">
+          <div className="relative h-[350px] w-full flex items-center justify-center bg-white rounded-2xl border border-slate-200 shadow-inner overflow-hidden p-4">
+             <svg viewBox="-60 -30 200 180" className="w-full h-full max-w-[350px] overflow-visible">
                 {/* Dynamic Polygon */}
                 <motion.polygon 
                   animate={{ 
@@ -239,7 +239,7 @@ export function FundamentalsTab() {
                 
                 {/* Leg B */}
                 <line x1="0" y1="100" x2="80" y2="100" stroke="#3b82f6" strokeWidth="4" strokeLinecap="round" />
-                <text x="40" y="115" textAnchor="middle" className="font-bold fill-blue-600">b = 4</text>
+                <text x="40" y="120" textAnchor="middle" className="font-bold fill-blue-600 text-[12px]">b = 4</text>
                 
                 {/* Leg A */}
                 <motion.line 
@@ -249,8 +249,8 @@ export function FundamentalsTab() {
                   transition={{ type: "spring", stiffness: 80, damping: 15 }}
                 />
                 <motion.text 
-                  animate={{ x: isRightAngle ? -15 : -35, y: isRightAngle ? 70 : 80 }} 
-                  textAnchor="middle" className="font-bold fill-red-600"
+                  animate={{ x: isRightAngle ? -25 : -45, y: isRightAngle ? 70 : 80 }} 
+                  textAnchor="middle" className="font-bold fill-red-600 text-[12px]"
                   transition={{ type: "spring", stiffness: 80, damping: 15 }}
                 >a = 3</motion.text>
                 
@@ -263,7 +263,7 @@ export function FundamentalsTab() {
                 />
                 <motion.text 
                   animate={{ x: isRightAngle ? 45 : 30, y: isRightAngle ? 65 : 60 }} 
-                  textAnchor="middle" className="font-bold fill-purple-600"
+                  textAnchor="middle" className="font-bold fill-purple-600 text-[12px]"
                   transition={{ type: "spring", stiffness: 80, damping: 15 }}
                 >c = {isRightAngle ? '5' : '5.5'}</motion.text>
 
@@ -271,12 +271,12 @@ export function FundamentalsTab() {
                 {isRightAngle ? (
                   <motion.g initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.3 }}>
                     <rect x="0" y="85" width="15" height="15" fill="#fef3c7" stroke="#f59e0b" strokeWidth="2" />
-                    <text x="8" y="115" textAnchor="middle" className="text-[10px] font-bold fill-amber-600">90°</text>
+                    <text x="25" y="96" textAnchor="middle" className="text-[10px] font-bold fill-amber-600">90°</text>
                   </motion.g>
                 ) : (
                   <motion.g initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.3 }}>
                     <path d="M 0,80 A 20,20 0 0,0 -16.5,88.5" fill="none" stroke="#f59e0b" strokeWidth="3" />
-                    <text x="-15" y="115" textAnchor="middle" className="text-[10px] font-bold fill-amber-600">120°</text>
+                    <text x="-25" y="105" textAnchor="middle" className="text-[10px] font-bold fill-amber-600">120°</text>
                   </motion.g>
                 )}
              </svg>

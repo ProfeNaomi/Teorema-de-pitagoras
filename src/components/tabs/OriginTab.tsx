@@ -20,9 +20,7 @@ export function OriginTab() {
              alt="Antigua Grecia" 
              className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-90"
            />
-           <div className="absolute inset-0 bg-gradient-to-t from-violet-900/90 to-transparent flex flex-col items-center justify-end pb-4">
-             <History className="w-10 h-10 text-white mx-auto mb-1 drop-shadow-md" />
-             <span className="font-bold text-white text-sm drop-shadow-md">Viaje en el Tiempo</span>
+           <div className="absolute inset-0 bg-gradient-to-t from-violet-900/40 to-transparent flex flex-col items-center justify-end pb-4 pointer-events-none">
            </div>
         </div>
       </div>
